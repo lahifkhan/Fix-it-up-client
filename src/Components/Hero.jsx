@@ -1,12 +1,14 @@
 import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
 
 import reportImg from "../assets/ai-generated-8603207_1280.jpg";
 import cleanupImg from "../assets/ai-generated-8603210_1280.jpg";
 import sustainabilityImg from "../assets/recyclable-6638729_1280.png";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
 
 const Hero = () => {
   const slides = [
@@ -28,33 +30,46 @@ const Hero = () => {
   ];
 
   return (
-    <div>
-      <div className="w-full h-[50vh] md:h-[70vh] my-11 ">
-        <Swiper
-          modules={[Pagination, Autoplay]}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 3500 }}
-          loop={true}
-          className="w-full h-full"
-        >
-          {slides.map((slide) => (
-            <SwiperSlide key={slide.id}>
-              <div className="w-full h-full  flex gap-4 items-center justify-center  text-2xl md:text-5xl font-bold">
-                <div className="flex-1">
-                  <img
-                    className="rounded-2xl h-full"
-                    src={slide.image}
-                    alt=""
-                  />
-                </div>
-                <div className="text-primary  p-4  leading-tight flex-1">
-                  {slide.text}
-                </div>
+    <div className="my-12">
+      <Swiper
+        effect={"coverflow"}
+        grabCursor={true}
+        centeredSlides={true}
+        slidesPerView={"auto"}
+        coverflowEffect={{
+          rotate: 40,
+          stretch: 0,
+          depth: 150,
+          modifier: 1,
+          slideShadows: true,
+        }}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        pagination={{ clickable: true }}
+        loop={true}
+        modules={[EffectCoverflow, Pagination, Autoplay]}
+        className="mySwiper "
+      >
+        {slides.map((slide) => (
+          <SwiperSlide
+            key={slide.id}
+            className="w-[250px] md:w-[400px] lg:w-[500px]"
+          >
+            <div className="relative">
+              <img
+                src={slide.image}
+                alt={slide.text}
+                className="rounded-2xl w-full h-[300px] md:h-[400px] object-cover"
+              />
+              <div className="absolute right-0 bottom-5 left-0  bg-black/50 text-white text-center text-sm md:text-lg font-medium p-3 ">
+                {slide.text}
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };
