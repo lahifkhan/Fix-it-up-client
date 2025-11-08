@@ -1,14 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 @import "tailwindcss";
 @plugin "daisyui";
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #632ee3;
-  --color-secondary: #9f62f2;
+  --color-primary: #6337fa;
+  --color-secondary: #9135f4;
 }
 .btn-primary {
   @apply text-white border-0 bg-gradient-to-r from-primary to-secondary;
 }
 .text-gradient-primary {
   @apply bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text;
+}
+
+.text-primary {
+  @apply text-[#2C234D];
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+.hero-bg {
+  background-image: url("./assets/wave.png");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: contain;
+}
+@media (max-width: 768px) {
+  .hero-bg {
+    background-position: top center;
+    background-size: cover;
+  }
 }
