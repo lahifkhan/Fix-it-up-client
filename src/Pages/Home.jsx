@@ -5,7 +5,7 @@ import garbageIcon from "../assets/icons8-garbage-64.png";
 import constructionIcon from "../assets/icons8-construction-50.png";
 import propertyIcon from "../assets/icons8-property-64.png";
 import roadIcon from "../assets/icons8-road-64.png";
-
+import Banner from "../Components/Banner";
 const Home = () => {
   const categories = [
     {
@@ -36,14 +36,17 @@ const Home = () => {
   ];
 
   return (
-    <div className="w-11/12 mx-auto">
-      <Hero></Hero>
+    <div>
+      <Banner></Banner>
+      <div className="w-11/12 mx-auto">
+        <Hero></Hero>
+      </div>
 
       <div className="my-8">
         <h1 className="text-2xl font-bold md:text-5xl text-center text-primary">
           Category
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-center items-center mt-8">
+        <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4  items-center mt-8 gap-8 justify-around">
           {categories.map((cat) => (
             <CategoryCard key={cat.id} cat={cat}></CategoryCard>
           ))}

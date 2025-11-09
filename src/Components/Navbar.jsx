@@ -3,9 +3,11 @@ import React, { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { Link, NavLink, useNavigate } from "react-router";
 import iconImg from "../assets/Region.png";
+import toast from "react-hot-toast";
+import NavbarLoading from "./NavbarLoading";
 
 const Navbar = () => {
-  const { user, signOutUser } = useContext(AuthContext);
+  const { user, signOutUser, loading } = useContext(AuthContext);
   const navigate = useNavigate();
   const links = (
     <>
@@ -35,11 +37,15 @@ const Navbar = () => {
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
-        alert("signOut successfully");
+        toast.success("signOut successfully");
         navigate("/");
       })
       .catch((err) => console.log(err.message));
   };
+
+  if (loading) {
+    return <NavbarLoading></NavbarLoading>;
+  }
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -75,12 +81,32 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <button onClick={handleSignOut} className="btn">
-            Sign Out
-          </button>
+          <div className="dropdown dropdown-bottom dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="rounded-full w-8 h-8 m-1"
+            >
+              <img src={user.photoURL} alt="" />
+            </div>
+            <div
+              tabIndex={0}
+              className="dropdown-content card card-sm bg-base-100 z-1 w-64 shadow-md"
+            >
+              <div className="card-body">
+                <p className="text-primary font-semibold">{user.email}</p>
+                <button
+                  onClick={handleSignOut}
+                  className="btn object-contain btn-primary"
+                >
+                  SignOut
+                </button>
+              </div>
+            </div>
+          </div>
         ) : (
           <div className="space-x-2">
-            <Link to={"/logIn"} className="btn btn-primary">
+            <Link to={"/login"} className="btn btn-primary">
               Login
             </Link>
             <Link to={"/register"} className="btn btn-primary">

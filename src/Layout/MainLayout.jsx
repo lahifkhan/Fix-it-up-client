@@ -8,7 +8,6 @@ const MainLayout = () => {
     <div>
       <header>
         <Navbar></Navbar>
-        <Banner></Banner>
       </header>
 
       <main>

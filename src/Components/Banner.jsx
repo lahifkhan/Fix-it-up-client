@@ -12,7 +12,7 @@ const Banner = () => {
             </span>
             <span className="text-gradient-primary">Community</span>
           </h1>
-          <p className="text-gray-700 ">
+          <p className="text-zinc-500 ">
             Easily report problems in your neighborhood, participate in
             community initiatives, and help make your area safer, cleaner, and
             more sustainable.
