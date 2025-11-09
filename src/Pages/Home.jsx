@@ -6,6 +6,8 @@ import constructionIcon from "../assets/icons8-construction-50.png";
 import propertyIcon from "../assets/icons8-property-64.png";
 import roadIcon from "../assets/icons8-road-64.png";
 import Banner from "../Components/Banner";
+import IssueCard from "../Components/IssueCard";
+import LatestIssue from "./LatestIssue";
 const Home = () => {
   const categories = [
     {
@@ -42,7 +44,7 @@ const Home = () => {
         <Hero></Hero>
       </div>
 
-      <div className="my-8">
+      <div className="mt-20 mb-8">
         <h1 className="text-2xl font-bold md:text-5xl text-center text-primary">
           Category
         </h1>
@@ -52,6 +54,8 @@ const Home = () => {
           ))}
         </div>
       </div>
+
+      <LatestIssue></LatestIssue>
     </div>
   );
 };

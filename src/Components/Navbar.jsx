@@ -21,7 +21,7 @@ const Navbar = () => {
       {user && (
         <>
           <li>
-            <NavLink to={"/myBids"}>Add Issues</NavLink>
+            <NavLink to={"/addIssues"}>Add Issues</NavLink>
           </li>
           <li>
             <NavLink to={"/myBids"}>My Issues</NavLink>
@@ -46,6 +46,7 @@ const Navbar = () => {
   if (loading) {
     return <NavbarLoading></NavbarLoading>;
   }
+
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -79,6 +80,7 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
+
       <div className="navbar-end">
         {user ? (
           <div className="dropdown dropdown-bottom dropdown-end">
@@ -87,7 +89,7 @@ const Navbar = () => {
               role="button"
               className="rounded-full w-8 h-8 m-1"
             >
-              <img src={user.photoURL} alt="" />
+              <img className="rounded-full" src={user.photoURL} alt="" />
             </div>
             <div
               tabIndex={0}
