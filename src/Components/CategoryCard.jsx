@@ -10,7 +10,7 @@ const CategoryCard = ({ cat }) => {
         <img src={cat.icon} alt="" />
       </div>
       <h1 className="font-bold text-xl">{cat.title}</h1>
-      <p className="text-sm text-zinc-500 leading-6">{cat.description}</p>
+      <p className="text-secondary leading-6">{cat.description}</p>
     </div>
   );
 };

@@ -18,6 +18,9 @@
 .text-primary {
   @apply text-[#2C234D];
 }
+.text-secondary {
+  @apply text-sm text-zinc-500;
+}
 
 * {
   font-family: "Poppins", sans-serif;

@@ -5,6 +5,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import PrivateRoutes from "./PrivateRoutes";
 import AddIssues from "../Pages/AddIssues";
+import AllIssue from "../Pages/AllIssue";
 
 export const Router = createBrowserRouter([
   {
@@ -33,6 +34,11 @@ export const Router = createBrowserRouter([
             <AddIssues></AddIssues>{" "}
           </PrivateRoutes>
         ),
+      },
+
+      {
+        path: "/allIssue",
+        Component: AllIssue,
       },
     ],
   },

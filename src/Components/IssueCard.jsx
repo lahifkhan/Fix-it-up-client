@@ -13,11 +13,11 @@ const IssueCard = ({ issue }) => {
         />
       </figure>{" "}
       <div className="card-body">
-        <h2 className="card-title">
+        <h2 className="card-title font-bold text-xl">
           {title}
           <div className="badge badge-secondary">NEW</div>
         </h2>
-        <p>{description}</p>
+        <p className="text-secondary">{description}</p>
         <div className="card-actions justify-end flex flex-col">
           <div className="badge badge-dash badge-primary">{category}</div>
           <div className="badge badge-dash badge-primary">
