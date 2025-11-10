@@ -3,6 +3,7 @@ import useAxiosInstance from "../Hook/useAxiosInstance";
 import AllIssueCard from "../Components/AllIssueCard";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import { MdCategory, MdClear, MdOutlinePendingActions } from "react-icons/md";
+import Loader from "../Components/Loader";
 
 const AllIssue = () => {
   const [allIssue, setAllIssue] = useState([]);
@@ -34,7 +35,7 @@ const AllIssue = () => {
   };
 
   if (loading) {
-    return <p>loading...</p>;
+    return <Loader></Loader>;
   }
   return (
     <div className="mb-8 w-11/12 mx-auto">

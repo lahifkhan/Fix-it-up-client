@@ -2,6 +2,7 @@ import { useState } from "react";
 import useAuth from "../Hook/useAuth";
 import useAxiosInstance from "../Hook/useAxiosInstance";
 import toast from "react-hot-toast";
+import Loader from "../Components/Loader";
 
 const AddIssues = () => {
   const { user } = useAuth();
@@ -53,7 +54,7 @@ const AddIssues = () => {
   };
 
   if (loading) {
-    return <p>loading...</p>;
+    return <Loader></Loader>;
   }
   return (
     <div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAxiosInstance from "../Hook/useAxiosInstance";
 import IssueCard from "../Components/IssueCard";
+import Loader from "../Components/Loader";
 
 const LatestIssue = () => {
   const [latestIssues, setLatestIssues] = useState([]);
@@ -16,7 +17,7 @@ const LatestIssue = () => {
   }, []);
 
   if (loading) {
-    return <p>loadin ....</p>;
+    return <Loader></Loader>;
   }
   return (
     <div>
