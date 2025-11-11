@@ -3,19 +3,23 @@ import useAxiosInstance from "../Hook/useAxiosInstance";
 import useAuth from "../Hook/useAuth";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import Loader from "../Components/Loader";
 
 const MyIssue = () => {
   const [issues, setIssues] = useState([]);
   const axiosInstance = useAxiosInstance();
   const [selectedIssue, setSelectedIssue] = useState({});
   const [refetch, setRefetch] = useState(false);
+  const [loading, setloading] = useState(false);
   const modalRef = useRef();
   const { user } = useAuth();
 
   useEffect(() => {
+    setloading(true);
     axiosInstance.get(`/issues?email=${user.email}`).then((data) => {
       console.log(data.data);
       setIssues(data.data);
+      setloading(false);
     });
   }, [refetch, user.email, axiosInstance]);
 
@@ -25,6 +29,7 @@ const MyIssue = () => {
   };
 
   const handleUpdate = (e) => {
+    setloading(true);
     e.preventDefault();
     const title = e.target.title.value;
     const category = e.target.category.value;
@@ -54,6 +59,7 @@ const MyIssue = () => {
 
       setRefetch(!refetch);
       if (data.data.modifiedCount) {
+        setloading(false);
         Swal.fire({
           title: "Successfully Updated",
           icon: "success",
@@ -64,7 +70,33 @@ const MyIssue = () => {
     });
   };
 
-  const handleIssueDelete = () => {};
+  const handleIssueDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosInstance.delete(`/issues/${id}`).then((data) => {
+          console.log(data.data);
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+          setRefetch(!refetch);
+        });
+      }
+    });
+  };
+
+  if (loading) {
+    return <Loader></Loader>;
+  }
   return (
     <div className="w-11/12 mx-auto mt-8 mb-10">
       <h1 className="text-4xl text-center font-bold  mb-6">
