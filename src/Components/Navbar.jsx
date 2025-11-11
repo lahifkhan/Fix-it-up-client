@@ -38,7 +38,7 @@ const Navbar = () => {
             <NavLink to={"/myIssue"}>My Issues</NavLink>
           </li>
           <li>
-            <NavLink to={"/myProducts"}>My Contribution</NavLink>
+            <NavLink to={"/myContribution"}>My Contribution</NavLink>
           </li>
         </>
       )}

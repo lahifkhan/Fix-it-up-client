@@ -6,29 +6,36 @@ import useAxiosInstance from "../Hook/useAxiosInstance";
 import { useParams } from "react-router";
 import useAuth from "../Hook/useAuth";
 import toast from "react-hot-toast";
+import Loader from "../Components/Loader";
 
 const IssueDetails = () => {
   const [issue, setIssue] = useState({});
   const [contributions, setContributions] = useState([]);
   const axiosInstance = useAxiosInstance();
+  const [refetch, setRefetch] = useState(false);
+  const [loading, setloading] = useState(false);
   const { id } = useParams();
   const modalRef = useRef();
   const { user } = useAuth();
   //   console.log(user);
 
   useEffect(() => {
+    setloading(true);
     axiosInstance.get(`/issues/${id}`).then((data) => {
       //   console.log(data);
       setIssue(data.data);
+      setloading(false);
     });
-  }, [id, axiosInstance]);
+  }, [id, axiosInstance, refetch]);
 
   const handleModal = () => {
     modalRef.current.showModal();
   };
 
   useEffect(() => {
+    setloading(true);
     axiosInstance.get(`/issueContribution/${id}`).then((data) => {
+      setloading(false);
       console.log(data.data);
       setContributions(data.data);
     });
@@ -36,7 +43,7 @@ const IssueDetails = () => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-
+    setloading(true);
     const title = e.target.title.value;
     const PaidAmount = e.target.amount.value;
     const name = e.target.name.value;
@@ -76,13 +83,17 @@ const IssueDetails = () => {
 
     axiosInstance.post("/contribute", newContribution).then((data) => {
       //   console.log(data.data);
+      setloading(false);
       if (data.data.insertedId) {
         toast.success("Thanks for your contribution");
         modalRef.current.close();
+        setRefetch(!refetch);
       }
     });
   };
-
+  if (loading) {
+    return <Loader></Loader>;
+  }
   return (
     <div>
       <div className="w-11/12 mx-auto grid grid-cols-11 gap-5 my-8">

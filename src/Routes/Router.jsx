@@ -8,6 +8,7 @@ import AddIssues from "../Pages/AddIssues";
 import AllIssue from "../Pages/AllIssue";
 import MyIssue from "../Pages/MyIssue";
 import IssueDetails from "../Pages/IssueDetails";
+import MyContributions from "../Pages/MyContributions";
 
 export const Router = createBrowserRouter([
   {
@@ -54,10 +55,19 @@ export const Router = createBrowserRouter([
       },
 
       {
-        path: "issues/:id",
+        path: "/issues/:id",
         element: (
           <PrivateRoutes>
             <IssueDetails></IssueDetails>
+          </PrivateRoutes>
+        ),
+      },
+
+      {
+        path: "/myContribution",
+        element: (
+          <PrivateRoutes>
+            <MyContributions></MyContributions>
           </PrivateRoutes>
         ),
       },
