@@ -14,7 +14,7 @@ const LatestIssue = () => {
       setLatestIssues(data.data);
       setLoading(false);
     });
-  }, []);
+  }, [axiosInstance]);
 
   if (loading) {
     return <Loader></Loader>;

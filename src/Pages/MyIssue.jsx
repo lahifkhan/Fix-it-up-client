@@ -99,7 +99,7 @@ const MyIssue = () => {
   }
   return (
     <div className="w-11/12 mx-auto mt-8 mb-10">
-      <h1 className="text-4xl text-center font-bold  mb-6">
+      <h1 className="text-2xl md:text-3xl text-center font-bold  mb-6">
         My Issues{" "}
         <span className="text-gradient-primary">({issues.length})</span>
       </h1>

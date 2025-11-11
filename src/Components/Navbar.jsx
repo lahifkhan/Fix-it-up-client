@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../Context/AuthContext";
 import { Link, NavLink, useNavigate } from "react-router";
@@ -9,6 +9,17 @@ import NavbarLoading from "./NavbarLoading";
 const Navbar = () => {
   const { user, signOutUser, loading } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   const links = (
     <>
       <li>
@@ -89,7 +100,12 @@ const Navbar = () => {
               role="button"
               className="rounded-full w-8 h-8 m-1"
             >
-              <img className="rounded-full" src={user.photoURL} alt="" />
+              <img
+                referrerPolicy="no-referrer"
+                className="rounded-full"
+                src={user.photoURL}
+                alt=""
+              />
             </div>
             <div
               tabIndex={0}
@@ -97,6 +113,12 @@ const Navbar = () => {
             >
               <div className="card-body">
                 <p className="text-primary font-semibold">{user.email}</p>
+                <input
+                  onChange={(e) => handleTheme(e.target.checked)}
+                  type="checkbox"
+                  defaultChecked={localStorage.getItem("theme") === "dark"}
+                  className="toggle"
+                />
                 <button
                   onClick={handleSignOut}
                   className="btn object-contain btn-primary"

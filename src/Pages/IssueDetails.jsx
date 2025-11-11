@@ -9,15 +9,16 @@ import toast from "react-hot-toast";
 
 const IssueDetails = () => {
   const [issue, setIssue] = useState({});
+  const [contributions, setContributions] = useState([]);
   const axiosInstance = useAxiosInstance();
   const { id } = useParams();
   const modalRef = useRef();
   const { user } = useAuth();
-  console.log(user);
+  //   console.log(user);
 
   useEffect(() => {
     axiosInstance.get(`/issues/${id}`).then((data) => {
-      console.log(data);
+      //   console.log(data);
       setIssue(data.data);
     });
   }, [id, axiosInstance]);
@@ -25,6 +26,13 @@ const IssueDetails = () => {
   const handleModal = () => {
     modalRef.current.showModal();
   };
+
+  useEffect(() => {
+    axiosInstance.get(`/issueContribution/${id}`).then((data) => {
+      console.log(data.data);
+      setContributions(data.data);
+    });
+  }, [axiosInstance, id]);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -67,7 +75,7 @@ const IssueDetails = () => {
     };
 
     axiosInstance.post("/contribute", newContribution).then((data) => {
-      console.log(data.data);
+      //   console.log(data.data);
       if (data.data.insertedId) {
         toast.success("Thanks for your contribution");
         modalRef.current.close();
@@ -115,13 +123,15 @@ const IssueDetails = () => {
           <p className="p-2 flex items-center gap-2">
             <FaHome className="text-primary" />
             <span className="text-primary font-semibold">location: </span>{" "}
-            <span>{issue.location}</span>
+            <span className="text-zinc-500">{issue.location}</span>
           </p>
 
           <p className="p-2 flex items-center gap-2">
-            <MdOutlineDateRange />
+            <MdOutlineDateRange className="text-primary" />
             <span className="text-primary font-semibold">Date:</span>{" "}
-            <span>{new Date(issue.date).toLocaleString()}</span>
+            <span className="text-zinc-500">
+              {new Date(issue.date).toLocaleString()}
+            </span>
           </p>
           {/* <p className="p-2 flex items-center gap-2 flex-wrap">
           <CgProfile className="text-primary" />
@@ -134,8 +144,8 @@ const IssueDetails = () => {
               Repair Budget
             </h3>
             <div className="flex items-center justify-between p-2">
-              <p className="font-bold">{issue.amount} Tk</p>
-              <p className="text-sm text-gray-500">Needed</p>
+              <p className="font-bold text-primary">{issue.amount} Tk</p>
+              <p className="text-zinc-500">Needed</p>
             </div>
 
             <div className="text-center mt-6">
@@ -144,6 +154,52 @@ const IssueDetails = () => {
               </button>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="w-11/12 mx-auto my-4">
+        <h1 className="text-xl font-bold text-primary mb-3">Contribution</h1>
+        <div className="overflow-x-auto shadow-lg bg-base-100  rounded-2xl">
+          <table className="table table-zebra">
+            {/* head of tables */}
+            <thead className=" text-white bg-primary text-sm">
+              <tr>
+                <th>SL No.</th>
+                <th>Contributor</th>
+                <th>Amount</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+
+            {/* body */}
+            <tbody>
+              {contributions.map((cont, index) => (
+                <tr key={cont._id} className="hover:bg-base-300">
+                  <td className="font-semibold">{index + 1}</td>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle h-12 md:w-12">
+                          <img
+                            referrerPolicy="no-referrer"
+                            src={cont.contributorImage}
+                            alt={cont.name}
+                            className="object-cover"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <p className="font-medium">{cont.name}</p>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td>{cont.PaidAmount} Tk</td>
+                  <td>{new Date(cont.date).toLocaleDateString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
 
