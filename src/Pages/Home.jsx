@@ -45,7 +45,7 @@ const Home = () => {
       </div>
 
       <div className="mt-20 mb-8">
-        <h1 className="text-2xl font-bold md:text-5xl text-center text-primary">
+        <h1 className="text-2xl font-bold md:text-3xl text-center text-primary">
           Category
         </h1>
         <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4  items-center mt-8 gap-8 justify-around">

@@ -1,5 +1,6 @@
 import React from "react";
 import { CiLocationOn } from "react-icons/ci";
+import { Link } from "react-router";
 
 const IssueCard = ({ issue }) => {
   const { title, description, category, location, image } = issue;
@@ -25,7 +26,9 @@ const IssueCard = ({ issue }) => {
             {location}
           </div>
         </div>
-        <button className="btn btn-secondary">See Details</button>
+        <Link to={`/issues/${issue._id}`} className="btn btn-secondary">
+          See Details
+        </Link>
       </div>
     </div>
   );

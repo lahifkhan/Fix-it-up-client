@@ -39,7 +39,7 @@ const AllIssue = () => {
   }
   return (
     <div className="mb-8 w-11/12 mx-auto">
-      <h1 className="text-center font-bold text-2xl md:text-5xl text-primary mt-20 mb-8">
+      <h1 className="text-center font-bold text-2xl md:text-3xl text-primary mt-20 mb-8">
         All Issues
       </h1>
       <div>
@@ -75,7 +75,7 @@ const AllIssue = () => {
               >
                 <option value="">All Status</option>
                 <option value="ongoing">Ongoing</option>
-                <option value="resolved">Resolved</option>
+                <option value="ended">Ended</option>
               </select>
             </div>
 

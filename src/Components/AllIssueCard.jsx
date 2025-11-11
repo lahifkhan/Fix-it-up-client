@@ -1,6 +1,7 @@
 import React from "react";
 import { CiLocationOn } from "react-icons/ci";
 import { FaDonate } from "react-icons/fa";
+import { Link } from "react-router";
 
 const AllIssueCard = ({ issue }) => {
   const { title, description, category, location, image, amount } = issue;
@@ -27,7 +28,9 @@ const AllIssueCard = ({ issue }) => {
           </div>
         </div>
         <div className="flex justify-between items-center ">
-          <button className="btn btn-secondary">See Details</button>
+          <Link to={`/issues/${issue._id}`} className="btn btn-secondary">
+            See Details
+          </Link>
           <div className="flex items-center gap-1 font-bold badge badge-outline">
             <FaDonate />
             {amount}

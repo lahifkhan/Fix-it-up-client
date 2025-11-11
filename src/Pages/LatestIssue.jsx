@@ -21,7 +21,7 @@ const LatestIssue = () => {
   }
   return (
     <div>
-      <h1 className="text-center font-bold text-2xl md:text-5xl text-primary mt-20 mb-8">
+      <h1 className="text-center font-bold text-2xl md:text-3xl text-primary mt-20 mb-8">
         Latest Issues
       </h1>
       <div className=" w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
