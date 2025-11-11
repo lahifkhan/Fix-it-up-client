@@ -23,22 +23,57 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink to={"/"}>Home</NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "  border-b-2 border-b-primary" : ""
+          }
+          to={"/"}
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/allIssue"}>All Issues</NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "  border-b-2 border-b-primary" : ""
+          }
+          to={"/allIssue"}
+        >
+          All Issues
+        </NavLink>
       </li>
 
       {user && (
         <>
           <li>
-            <NavLink to={"/addIssues"}>Add Issues</NavLink>
+            <NavLink
+              to="/addIssues"
+              className={({ isActive }) =>
+                isActive ? "  border-b-2 border-b-primary" : ""
+              }
+            >
+              Add Issues
+            </NavLink>
           </li>
           <li>
-            <NavLink to={"/myIssue"}>My Issues</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "  border-b-2 border-b-primary" : ""
+              }
+              to={"/myIssue"}
+            >
+              My Issues
+            </NavLink>
           </li>
           <li>
-            <NavLink to={"/myContribution"}>My Contribution</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "  border-b-2 border-b-primary" : ""
+              }
+              to={"/myContribution"}
+            >
+              My Contribution
+            </NavLink>
           </li>
         </>
       )}
