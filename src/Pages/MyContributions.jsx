@@ -4,6 +4,7 @@ import useAuth from "../Hook/useAuth";
 import Loader from "../Components/Loader";
 import jsPDF from "jspdf";
 import { autoTable } from "jspdf-autotable";
+import NoDataFound from "../Components/NoDataFound";
 
 const MyContributions = () => {
   const [contributions, setContributions] = useState([]);
@@ -51,6 +52,9 @@ const MyContributions = () => {
 
   if (loading) {
     return <Loader></Loader>;
+  }
+  if (contributions.length === 0) {
+    return <NoDataFound></NoDataFound>;
   }
   return (
     <div className="w-11/12 mx-auto mt-8 mb-10">

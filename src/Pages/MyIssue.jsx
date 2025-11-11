@@ -4,6 +4,7 @@ import useAuth from "../Hook/useAuth";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Loader from "../Components/Loader";
+import NoDataFound from "../Components/NoDataFound";
 
 const MyIssue = () => {
   const [issues, setIssues] = useState([]);
@@ -96,6 +97,9 @@ const MyIssue = () => {
 
   if (loading) {
     return <Loader></Loader>;
+  }
+  if (issues.length === 0) {
+    return <NoDataFound></NoDataFound>;
   }
   return (
     <div className="w-11/12 mx-auto mt-8 mb-10">
