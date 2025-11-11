@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import useAxiosInstance from "../Hook/useAxiosInstance";
 import useAuth from "../Hook/useAuth";
 import Loader from "../Components/Loader";
+import jsPDF from "jspdf";
+import { autoTable } from "jspdf-autotable";
 
 const MyContributions = () => {
   const [contributions, setContributions] = useState([]);
@@ -17,6 +19,35 @@ const MyContributions = () => {
       setloading(false);
     });
   }, [axiosInstance, user.email]);
+
+  const exportToPdf = () => {
+    if (contributions.length === 0) return;
+    const doc = new jsPDF();
+    const tableCol = [
+      "SL No.",
+      "Contributor",
+      "Title",
+      "Category",
+      "Amount",
+      "Date",
+    ];
+
+    const tableRow = contributions.map((cont, index) => [
+      index + 1,
+      cont.name,
+      cont.title,
+      cont.category,
+      `${cont.PaidAmount} Tk`,
+      new Date(cont.date).toLocaleDateString(),
+    ]);
+
+    autoTable(doc, {
+      head: [tableCol],
+      body: tableRow,
+    });
+
+    doc.save("my_contributions.pdf");
+  };
 
   if (loading) {
     return <Loader></Loader>;
@@ -75,6 +106,11 @@ const MyContributions = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="flex justify-center mt-2">
+        <button onClick={exportToPdf} className="btn btn-primary ">
+          Download As Pdf
+        </button>
       </div>
     </div>
   );
