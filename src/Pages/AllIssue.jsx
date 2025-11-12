@@ -96,7 +96,7 @@ const AllIssue = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {allIssue.map((issue) => (
-          <AllIssueCard issue={issue}></AllIssueCard>
+          <AllIssueCard key={issue._id} issue={issue}></AllIssueCard>
         ))}
       </div>
     </div>

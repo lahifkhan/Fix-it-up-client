@@ -117,7 +117,7 @@ const IssueDetails = () => {
               <h1 className="text-3xl font-bold text-primary">{issue.title}</h1>
             </div>
           </div>
-          <div className="flex gap-6">
+          <div className="flex flex-col md:flex-row gap-6">
             <p className=" border-r-2  pr-3">
               <span className="text-zinc-500"> Created By</span> <br />{" "}
               <span className="text-primary font-semibold">{issue.email}</span>
