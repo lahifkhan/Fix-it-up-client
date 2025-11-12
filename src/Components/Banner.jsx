@@ -1,5 +1,6 @@
 import React from "react";
-import communityImg from "../assets/community.png";
+import cityAni from "../city.json";
+import Lottie from "lottie-react";
 
 const Banner = () => {
   return (
@@ -20,7 +21,7 @@ const Banner = () => {
         </div>
 
         <div className="flex-1">
-          <img className="  w-full" src={communityImg} alt="" />
+          <Lottie animationData={cityAni} loop={true} />
         </div>
       </div>
     </div>

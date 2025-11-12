@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Hero from "../Components/Hero";
 import CategoryCard from "../Components/CategoryCard";
 import garbageIcon from "../assets/icons8-garbage-64.png";
@@ -11,7 +11,22 @@ import LatestIssue from "./LatestIssue";
 import useDynamicTitle from "../Hook/useDynamicTitle";
 import CommunityStats from "../Components/CommunityStats";
 import VolunteerCta from "../Components/VolunteerCta";
+import useAxiosInstance from "../Hook/useAxiosInstance";
+import Loader from "../Components/Loader";
 const Home = () => {
+  const [latestIssues, setLatestIssues] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const axiosInstance = useAxiosInstance();
+
+  useEffect(() => {
+    setLoading(true);
+    axiosInstance.get("/latestIssue").then((data) => {
+      console.log(data.data);
+      setLatestIssues(data.data);
+      setLoading(false);
+    });
+  }, [axiosInstance]);
+
   const categories = [
     {
       id: 1,
@@ -41,6 +56,9 @@ const Home = () => {
   ];
 
   useDynamicTitle("Home");
+  if (loading) {
+    return <Loader></Loader>;
+  }
   return (
     <div>
       <Banner></Banner>
@@ -59,7 +77,7 @@ const Home = () => {
         </div>
       </div>
 
-      <LatestIssue></LatestIssue>
+      <LatestIssue latestIssues={latestIssues}></LatestIssue>
 
       <CommunityStats></CommunityStats>
 

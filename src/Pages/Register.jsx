@@ -30,6 +30,9 @@ const Register = () => {
       setError(
         "Password must include uppercase, lowercase, and be at least 6 chars."
       );
+      toast.error(
+        "Password must include uppercase, lowercase, and be at least 6 chars."
+      );
       return;
     }
 
@@ -46,11 +49,13 @@ const Register = () => {
           .catch((err) => {
             console.log(err.message);
             toast.error(err.code);
+            setloading(false);
           });
       })
       .catch((err) => {
         toast.error(err.code);
         console.log(err.message);
+        setloading(false);
       });
   };
 

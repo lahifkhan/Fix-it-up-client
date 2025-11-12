@@ -1,24 +1,7 @@
-import React, { useEffect, useState } from "react";
-import useAxiosInstance from "../Hook/useAxiosInstance";
 import IssueCard from "../Components/IssueCard";
 import Loader from "../Components/Loader";
 
-const LatestIssue = () => {
-  const [latestIssues, setLatestIssues] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const axiosInstance = useAxiosInstance();
-
-  useEffect(() => {
-    axiosInstance.get("/latestIssue").then((data) => {
-      console.log(data.data);
-      setLatestIssues(data.data);
-      setLoading(false);
-    });
-  }, [axiosInstance]);
-
-  if (loading) {
-    return <Loader></Loader>;
-  }
+const LatestIssue = ({ latestIssues }) => {
   return (
     <div>
       <h1 className="text-center font-bold text-2xl md:text-3xl text-primary mt-20 mb-8">

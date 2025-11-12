@@ -49,6 +49,7 @@
 }
 @media (max-width: 768px) {
   .hero-bg {
+    background-image: url("./assets/wave2.png");
     background-position: top center;
     background-size: cover;
   }

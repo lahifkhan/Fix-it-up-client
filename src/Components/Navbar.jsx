@@ -158,7 +158,7 @@ const Navbar = () => {
                   onClick={handleSignOut}
                   className="btn object-contain btn-primary"
                 >
-                  SignOut
+                  LogOut
                 </button>
               </div>
             </div>
