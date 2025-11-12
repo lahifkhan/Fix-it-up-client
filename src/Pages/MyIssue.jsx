@@ -5,6 +5,7 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Loader from "../Components/Loader";
 import NoDataFound from "../Components/NoDataFound";
+import useDynamicTitle from "../Hook/useDynamicTitle";
 
 const MyIssue = () => {
   const [issues, setIssues] = useState([]);
@@ -94,6 +95,7 @@ const MyIssue = () => {
       }
     });
   };
+  useDynamicTitle("My Issues");
 
   if (loading) {
     return <Loader></Loader>;

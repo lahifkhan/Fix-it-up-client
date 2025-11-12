@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import useDynamicTitle from "../Hook/useDynamicTitle";
 
 const Login = () => {
   const { signInUser, signWithGoogle, setloading, setUser } =
@@ -54,6 +55,7 @@ const Login = () => {
     e.preventDefault();
     setShowPass(!showPass);
   };
+  useDynamicTitle("Login");
   return (
     <div>
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto mt-9">

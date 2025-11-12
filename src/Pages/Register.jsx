@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { auth } from "../Firebase/Firebase.config";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import useDynamicTitle from "../Hook/useDynamicTitle";
 
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
@@ -13,7 +14,7 @@ const Register = () => {
   const { createUser, updateUser, signWithGoogle, setUser, setloading } =
     useContext(AuthContext);
   const navigate = useNavigate();
-
+  useDynamicTitle("Register");
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const displayName = e.target.name.value;

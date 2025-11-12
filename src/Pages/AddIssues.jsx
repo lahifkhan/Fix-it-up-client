@@ -3,6 +3,7 @@ import useAuth from "../Hook/useAuth";
 import useAxiosInstance from "../Hook/useAxiosInstance";
 import toast from "react-hot-toast";
 import Loader from "../Components/Loader";
+import useDynamicTitle from "../Hook/useDynamicTitle";
 
 const AddIssues = () => {
   const { user } = useAuth();
@@ -52,10 +53,12 @@ const AddIssues = () => {
       }
     });
   };
+  useDynamicTitle("Add Issue");
 
   if (loading) {
     return <Loader></Loader>;
   }
+
   return (
     <div>
       <div className="card border border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl my-6">

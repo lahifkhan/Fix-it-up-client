@@ -5,6 +5,7 @@ import Loader from "../Components/Loader";
 import jsPDF from "jspdf";
 import { autoTable } from "jspdf-autotable";
 import NoDataFound from "../Components/NoDataFound";
+import useDynamicTitle from "../Hook/useDynamicTitle";
 
 const MyContributions = () => {
   const [contributions, setContributions] = useState([]);
@@ -49,6 +50,8 @@ const MyContributions = () => {
 
     doc.save("my_contributions.pdf");
   };
+
+  useDynamicTitle("My Contribution");
 
   if (loading) {
     return <Loader></Loader>;

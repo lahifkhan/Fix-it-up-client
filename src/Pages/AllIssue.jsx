@@ -4,6 +4,7 @@ import AllIssueCard from "../Components/AllIssueCard";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import { MdCategory, MdClear, MdOutlinePendingActions } from "react-icons/md";
 import Loader from "../Components/Loader";
+import useDynamicTitle from "../Hook/useDynamicTitle";
 
 const AllIssue = () => {
   const [allIssue, setAllIssue] = useState([]);
@@ -11,6 +12,8 @@ const AllIssue = () => {
   const [category, setCategory] = useState("");
   const [status, setStatus] = useState("");
   const axiosInstance = useAxiosInstance();
+
+  useDynamicTitle("All Issues");
 
   useEffect(() => {
     setloading(true);

@@ -9,6 +9,7 @@ import AllIssue from "../Pages/AllIssue";
 import MyIssue from "../Pages/MyIssue";
 import IssueDetails from "../Pages/IssueDetails";
 import MyContributions from "../Pages/MyContributions";
+import PageNotFound from "../Components/PageNotFound";
 
 export const Router = createBrowserRouter([
   {
@@ -72,5 +73,15 @@ export const Router = createBrowserRouter([
         ),
       },
     ],
+  },
+
+  {
+    path: "/pageNotFound",
+    Component: PageNotFound,
+  },
+
+  {
+    path: "/*",
+    Component: PageNotFound,
   },
 ]);

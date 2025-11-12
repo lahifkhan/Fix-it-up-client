@@ -3,10 +3,11 @@ import { CgProfile } from "react-icons/cg";
 import { FaHome } from "react-icons/fa";
 import { MdOutlineDateRange } from "react-icons/md";
 import useAxiosInstance from "../Hook/useAxiosInstance";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useAuth from "../Hook/useAuth";
 import toast from "react-hot-toast";
 import Loader from "../Components/Loader";
+import PageNotFound from "../Components/PageNotFound";
 
 const IssueDetails = () => {
   const [issue, setIssue] = useState({});
@@ -19,14 +20,26 @@ const IssueDetails = () => {
   const { user } = useAuth();
   //   console.log(user);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     setloading(true);
-    axiosInstance.get(`/issues/${id}`).then((data) => {
-      //   console.log(data);
-      setIssue(data.data);
-      setloading(false);
-    });
-  }, [id, axiosInstance, refetch]);
+    axiosInstance
+      .get(`/issues/${id}`)
+      .then((data) => {
+        setIssue(data.data);
+        setloading(false);
+      })
+      .catch((err) => {
+        setloading(false);
+        console.error(err);
+
+        if (err.response?.status === 404 || err.response?.status === 400) {
+          toast.error("Invalid or missing issue!");
+          navigate("/pageNotFound");
+        }
+      });
+  }, [id, axiosInstance, navigate]);
 
   const handleModal = () => {
     modalRef.current.showModal();
@@ -39,7 +52,7 @@ const IssueDetails = () => {
       console.log(data.data);
       setContributions(data.data);
     });
-  }, [axiosInstance, id]);
+  }, [axiosInstance, id, refetch]);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -86,14 +99,15 @@ const IssueDetails = () => {
       setloading(false);
       if (data.data.insertedId) {
         toast.success("Thanks for your contribution");
-        modalRef.current.close();
         setRefetch(!refetch);
+        modalRef.current.close();
       }
     });
   };
   if (loading) {
     return <Loader></Loader>;
   }
+
   return (
     <div>
       <div className="w-11/12 mx-auto grid grid-cols-11 gap-5 my-8">
@@ -170,48 +184,54 @@ const IssueDetails = () => {
 
       <div className="w-11/12 mx-auto my-4">
         <h1 className="text-xl font-bold text-primary mb-3">Contribution</h1>
-        <div className="overflow-x-auto shadow-lg bg-base-100  rounded-2xl">
-          <table className="table table-zebra">
-            {/* head of tables */}
-            <thead className=" text-white bg-primary text-sm">
-              <tr>
-                <th>SL No.</th>
-                <th>Contributor</th>
-                <th>Amount</th>
-                <th>Date</th>
-              </tr>
-            </thead>
+        {contributions.length ? (
+          <div className="overflow-x-auto shadow-lg bg-base-100  rounded-2xl">
+            <table className="table table-zebra">
+              {/* head of tables */}
+              <thead className=" text-white bg-primary text-sm">
+                <tr>
+                  <th>SL No.</th>
+                  <th>Contributor</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
 
-            {/* body */}
-            <tbody>
-              {contributions.map((cont, index) => (
-                <tr key={cont._id} className="hover:bg-base-300">
-                  <td className="font-semibold">{index + 1}</td>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 md:w-12">
-                          <img
-                            referrerPolicy="no-referrer"
-                            src={cont.contributorImage}
-                            alt={cont.name}
-                            className="object-cover"
-                          />
+              {/* body */}
+              <tbody>
+                {contributions.map((cont, index) => (
+                  <tr key={cont._id} className="hover:bg-base-300">
+                    <td className="font-semibold">{index + 1}</td>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div className="avatar">
+                          <div className="mask mask-squircle h-12 md:w-12">
+                            <img
+                              referrerPolicy="no-referrer"
+                              src={cont.contributorImage}
+                              alt={cont.name}
+                              className="object-cover"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <p className="font-medium">{cont.name}</p>
                         </div>
                       </div>
-                      <div>
-                        <p className="font-medium">{cont.name}</p>
-                      </div>
-                    </div>
-                  </td>
+                    </td>
 
-                  <td>{cont.PaidAmount} Tk</td>
-                  <td>{new Date(cont.date).toLocaleDateString()}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                    <td>{cont.PaidAmount} Tk</td>
+                    <td>{new Date(cont.date).toLocaleDateString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <h1 className="text-xl text-center font-semibold">
+            No Contributions Yet!
+          </h1>
+        )}
       </div>
 
       {/* modal */}

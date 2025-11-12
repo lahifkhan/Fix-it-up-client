@@ -8,6 +8,7 @@ import roadIcon from "../assets/icons8-road-64.png";
 import Banner from "../Components/Banner";
 import IssueCard from "../Components/IssueCard";
 import LatestIssue from "./LatestIssue";
+import useDynamicTitle from "../Hook/useDynamicTitle";
 const Home = () => {
   const categories = [
     {
@@ -37,6 +38,7 @@ const Home = () => {
     },
   ];
 
+  useDynamicTitle("Home");
   return (
     <div>
       <Banner></Banner>
