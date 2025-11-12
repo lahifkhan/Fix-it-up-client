@@ -9,6 +9,7 @@ import Banner from "../Components/Banner";
 import IssueCard from "../Components/IssueCard";
 import LatestIssue from "./LatestIssue";
 import useDynamicTitle from "../Hook/useDynamicTitle";
+import CommunityStats from "../Components/CommunityStats";
 const Home = () => {
   const categories = [
     {
@@ -58,6 +59,8 @@ const Home = () => {
       </div>
 
       <LatestIssue></LatestIssue>
+
+      <CommunityStats></CommunityStats>
     </div>
   );
 };
