@@ -61,7 +61,7 @@ const MyContributions = () => {
   }
   return (
     <div className="w-11/12 mx-auto mt-8 mb-10">
-      <h1 className="text-2xl md:text-3xl text-center font-bold  mb-6">
+      <h1 className="text-2xl md:text-3xl text-center text-primary font-bold  mb-6">
         My Contributions
         <span className="text-gradient-primary">({contributions.length})</span>
       </h1>
