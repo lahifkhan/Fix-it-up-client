@@ -1,7 +1,9 @@
 import React from "react";
 import img404 from "../assets/vecteezy_404-landing-page_6549647.jpg";
+import useDynamicTitle from "../Hook/useDynamicTitle";
 
 const PageNotFound = () => {
+  useDynamicTitle("Not Found");
   return (
     <div className="w-11/12 mx-auto flex justify-center items-center min-h-[80vh] ">
       <div className="bg-base-100 shadow-2xl rounded-2xl p-4 flex flex-col items-center">
