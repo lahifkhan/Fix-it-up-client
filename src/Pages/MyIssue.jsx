@@ -198,24 +198,34 @@ const MyIssue = () => {
         <div className="modal-box">
           <form onSubmit={handleUpdate} className="space-y-4">
             <div>
-              {/* title */}
               <div>
                 <label className="label font-medium">Title</label>
                 <input
                   type="text"
                   name="title"
-                  defaultValue={selectedIssue?.title}
+                  value={selectedIssue?.title || ""}
+                  onChange={(e) =>
+                    setSelectedIssue({
+                      ...selectedIssue,
+                      title: e.target.value,
+                    })
+                  }
                   className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
                   placeholder="Enter the title of issue"
                 />
               </div>
 
-              {/* Category Dropdown */}
               <div>
                 <label className="label font-medium">Category</label>
                 <select
                   name="category"
-                  defaultValue={selectedIssue?.category}
+                  value={selectedIssue?.category || ""}
+                  onChange={(e) =>
+                    setSelectedIssue({
+                      ...selectedIssue,
+                      category: e.target.value,
+                    })
+                  }
                   className="select w-full rounded-full focus:border-0 focus:outline-gray-200"
                 >
                   <option value="" disabled>
@@ -233,25 +243,32 @@ const MyIssue = () => {
               </div>
             </div>
 
-            {/* Description Textarea */}
             <div>
               <label className="label font-medium">Description</label>
               <textarea
                 name="description"
-                defaultValue={selectedIssue.description}
+                value={selectedIssue?.description || ""}
+                onChange={(e) =>
+                  setSelectedIssue({
+                    ...selectedIssue,
+                    description: e.target.value,
+                  })
+                }
                 rows="2"
                 className="textarea w-full rounded-2xl focus:border-0 focus:outline-gray-200 "
                 placeholder="Enter description"
               ></textarea>
             </div>
-
-            {/* ammount to fix issue */}
+            {/* tks */}
             <div>
               <label className="label font-medium">Amount</label>
               <input
                 type="number"
                 name="amount"
-                defaultValue={selectedIssue?.amount}
+                value={selectedIssue?.amount || ""}
+                onChange={(e) =>
+                  setSelectedIssue({ ...selectedIssue, amount: e.target.value })
+                }
                 className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
                 placeholder="Tk"
               />
@@ -262,7 +279,10 @@ const MyIssue = () => {
               <label className="label font-medium">Status</label>
               <select
                 name="status"
-                defaultValue={selectedIssue?.status}
+                value={selectedIssue?.status || ""}
+                onChange={(e) =>
+                  setSelectedIssue({ ...selectedIssue, status: e.target.value })
+                }
                 className="select w-full rounded-full focus:border-0 focus:outline-gray-200"
               >
                 <option value="" disabled>
@@ -273,7 +293,7 @@ const MyIssue = () => {
               </select>
             </div>
 
-            {/* Submit Button */}
+            {/* update button */}
             <button
               type="submit"
               className="btn w-full text-white mt-6 rounded-full btn-primary"
@@ -281,6 +301,7 @@ const MyIssue = () => {
               Update
             </button>
           </form>
+
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
