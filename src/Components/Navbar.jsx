@@ -165,7 +165,7 @@ const Navbar = () => {
             </div>
           </div>
         ) : (
-          <div className="space-x-2">
+          <div className="space-x-2 flex flex-col gap-2 md:flex-row">
             <Link to={"/login"} className="btn btn-sm btn-primary">
               Login
             </Link>
