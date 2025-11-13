@@ -25,7 +25,7 @@ const IssueCard = ({ issue }) => {
         </p>
         <div className="card-actions justify-end flex flex-col">
           <div className="badge badge-dash badge-primary">{category}</div>
-          <div className="badge badge-dash badge-primary">
+          <div className="flex items-center gap-1">
             <CiLocationOn />
             {location}
           </div>
