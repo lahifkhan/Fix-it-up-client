@@ -8,6 +8,7 @@ import useAuth from "../Hook/useAuth";
 import toast from "react-hot-toast";
 import Loader from "../Components/Loader";
 import PageNotFound from "../Components/PageNotFound";
+import useDynamicTitle from "../Hook/useDynamicTitle";
 
 const IssueDetails = () => {
   const [issue, setIssue] = useState({});
@@ -104,6 +105,7 @@ const IssueDetails = () => {
       }
     });
   };
+  useDynamicTitle("Issue Details");
   if (loading) {
     return <Loader></Loader>;
   }
