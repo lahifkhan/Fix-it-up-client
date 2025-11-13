@@ -128,6 +128,12 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end">
+        <input
+          onChange={(e) => handleTheme(e.target.checked)}
+          type="checkbox"
+          defaultChecked={localStorage.getItem("theme") === "dark"}
+          className="toggle mr-2"
+        />
         {user ? (
           <div className="dropdown dropdown-bottom dropdown-end">
             <div
@@ -148,12 +154,7 @@ const Navbar = () => {
             >
               <div className="card-body">
                 <p className="text-primary font-semibold">{user.email}</p>
-                <input
-                  onChange={(e) => handleTheme(e.target.checked)}
-                  type="checkbox"
-                  defaultChecked={localStorage.getItem("theme") === "dark"}
-                  className="toggle"
-                />
+
                 <button
                   onClick={handleSignOut}
                   className="btn object-contain btn-primary"

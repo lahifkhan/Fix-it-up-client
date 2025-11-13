@@ -26,8 +26,10 @@ const MyIssue = () => {
   }, [refetch, user.email, axiosInstance]);
 
   const handleOpenUpdateModal = (issue) => {
-    modalRef.current.showModal();
     setSelectedIssue(issue);
+    setTimeout(() => {
+      modalRef.current.showModal();
+    }, 50);
   };
 
   const handleUpdate = (e) => {
@@ -188,6 +190,7 @@ const MyIssue = () => {
       <dialog
         ref={modalRef}
         id="my_modal_5"
+        key={selectedIssue?._id}
         className="modal modal-bottom sm:modal-middle"
       >
         <div className="modal-box">
