@@ -18,7 +18,11 @@ const IssueCard = ({ issue }) => {
           {title}
           <div className="badge badge-secondary">NEW</div>
         </h2>
-        <p className="text-secondary">{description}</p>
+        <p className="text-secondary">
+          {description.length > 40
+            ? description.slice(0, 40) + "..."
+            : description}
+        </p>
         <div className="card-actions justify-end flex flex-col">
           <div className="badge badge-dash badge-primary">{category}</div>
           <div className="badge badge-dash badge-primary">
@@ -26,7 +30,7 @@ const IssueCard = ({ issue }) => {
             {location}
           </div>
         </div>
-        <Link to={`/issues/${issue._id}`} className="btn btn-secondary">
+        <Link to={`/issues/${issue._id}`} className="btn btn-primary">
           See Details
         </Link>
       </div>

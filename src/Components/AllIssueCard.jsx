@@ -15,11 +15,12 @@ const AllIssueCard = ({ issue }) => {
         />
       </figure>{" "}
       <div className="card-body">
-        <h2 className="card-title font-bold text-xl">
-          {title}
-          <div className="badge badge-secondary">NEW</div>
-        </h2>
-        <p className="text-secondary">{description}</p>
+        <h2 className="card-title font-bold text-xl">{title}</h2>
+        <p className="text-secondary">
+          {description.length > 40
+            ? description.slice(0, 40) + "..."
+            : description}
+        </p>
         <div className="card-actions justify-end flex flex-col">
           <div className="badge badge-dash badge-primary">{category}</div>
           <div className="badge badge-dash badge-primary">
@@ -28,7 +29,7 @@ const AllIssueCard = ({ issue }) => {
           </div>
         </div>
         <div className="flex justify-between items-center ">
-          <Link to={`/issues/${issue._id}`} className="btn btn-secondary">
+          <Link to={`/issues/${issue._id}`} className="btn btn-primary">
             See Details
           </Link>
           <div className="flex items-center gap-1 font-bold badge badge-outline">
