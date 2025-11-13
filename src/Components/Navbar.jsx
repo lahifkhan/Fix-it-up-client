@@ -166,10 +166,10 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="space-x-2">
-            <Link to={"/login"} className="btn btn-primary">
+            <Link to={"/login"} className="btn btn-sm btn-primary">
               Login
             </Link>
-            <Link to={"/register"} className="btn btn-primary">
+            <Link to={"/register"} className="btn btn-sm btn-primary">
               Register
             </Link>
           </div>

@@ -133,7 +133,7 @@ const Register = () => {
                 </button>
               </div>
 
-              <button className="btn btn-secondary mt-4">Register</button>
+              <button className="btn btn-primary mt-4">Register</button>
 
               <div className="flex flex-col text-center space-y-2">
                 <p className=" font-semibold text-accent">Or</p>

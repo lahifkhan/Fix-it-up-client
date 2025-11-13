@@ -92,7 +92,7 @@ const Login = () => {
               <div>
                 <button className="link link-hover">Forgot password?</button>
               </div>
-              <button className="btn btn-secondary mt-4">Log in</button>
+              <button className="btn btn-primary mt-4">Log in</button>
 
               <div className="flex flex-col text-center space-y-2">
                 <p className=" font-semibold text-accent">Or</p>
