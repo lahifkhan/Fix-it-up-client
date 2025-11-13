@@ -89,9 +89,7 @@ const Login = () => {
                   {showPass ? <FaEyeSlash /> : <FaEye />}
                 </button>
               </div>
-              <div>
-                <button className="link link-hover">Forgot password?</button>
-              </div>
+
               <button className="btn btn-primary mt-4">Log in</button>
 
               <div className="flex flex-col text-center space-y-2">
