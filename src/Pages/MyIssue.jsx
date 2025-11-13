@@ -69,7 +69,9 @@ const MyIssue = () => {
           icon: "success",
           draggable: true,
         });
-        modalRef.current.close();
+        if (modalRef.current) {
+          modalRef.current.close();
+        }
       }
     });
   };
